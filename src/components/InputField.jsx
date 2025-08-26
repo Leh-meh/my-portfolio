@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types"; 
 
 const InputField = ({ field, label, icon: Icon, formData, handleChange }) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  const hoverFocusClasses = "hover:bg-white/20 focus:bg-white/20";
 
   // Helper function to generate input classes dynamically
   const getInputClasses = (isTextArea = false) => {
@@ -10,10 +13,6 @@ const InputField = ({ field, label, icon: Icon, formData, handleChange }) => {
       focus:outline-none focus:ring-2 focus:ring-[#6366f1] focus:ring-offset-2 
       focus:ring-offset-[#1c1e26] transition-all duration-300 peer
     `;
-
-    const hoverFocusClasses = isFocused
-      ? "shadow-[0_4px_12px_rgba(99,102,241,0.4)] border-[#6366f1]"
-      : "border-white/20 hover:border-[#6366f1]";
 
     return `${baseClasses} ${hoverFocusClasses} ${isTextArea ? "h-52 pt-12" : "pl-12"}`;
   };
@@ -85,4 +84,12 @@ const InputField = ({ field, label, icon: Icon, formData, handleChange }) => {
   );
 };
 
+InputField.propTypes = {
+  field: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.elementType.isRequired,
+  formData: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
+ 
 export default InputField;

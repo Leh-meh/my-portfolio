@@ -1,23 +1,36 @@
-import React, { useEffect, useState, useCallback } from "react";
+// Importações do React (atualizadas) 
+import { useState, useEffect } from "react";
 
-import { supabase } from "../supabase"; 
-
+// Importações de validação
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
+
+// Importações do MUI (corrigidas)
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+
+// Importações de componentes locais
 import CardProject from "../components/CardProject";
 import TechStackIcon from "../components/TechStackIcon";
+
+// Importações de animação
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+// Importações de certificados
 import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
 
+// Importe seus projetos e certificados
+import { projects } from "../data/projectsData";
+import { certificates } from "../data/certificatesData";
 
+import SwipeableViews from 'react-swipeable-views';
+
+// Declare o componente FIRST
 const ToggleButton = ({ onClick, isShowingMore }) => (
   <button
     onClick={onClick}
@@ -70,6 +83,11 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
   </button>
 );
 
+// THEN defina os PropTypes
+ToggleButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    isShowingMore: PropTypes.bool.isRequired,
+};
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -104,29 +122,21 @@ function a11yProps(index) {
 
 // techStacks tetap sama
 const techStacks = [
-  { icon: "html.svg", language: "HTML" },
-  { icon: "css.svg", language: "CSS" },
-  { icon: "javascript.svg", language: "JavaScript" },
-  { icon: "tailwind.svg", language: "Tailwind CSS" },
-  { icon: "reactjs.svg", language: "ReactJS" },
-  { icon: "vite.svg", language: "Vite" },
-  { icon: "nodejs.svg", language: "Node JS" },
-  { icon: "bootstrap.svg", language: "Bootstrap" },
-  { icon: "firebase.svg", language: "Firebase" },
-  { icon: "MUI.svg", language: "Material UI" },
-  { icon: "vercel.svg", language: "Vercel" },
-  { icon: "SweetAlert.svg", language: "SweetAlert2" },
-];
+  { icon: "/public/html-icon.png", language: "HTML" },
+  { icon: "/public/css-icon.png", language: "CSS" },
+  { icon: "/public/js-icon.png", language: "JavaScript" },
+  { icon: "/public/react-icon.png", language: "ReactJS" },
+  { icon: "/public/node-js-icon.png", language: "Node JS" },
+  { icon: "/public/figma-icon.png", language: "Figma" },
+]
 
 export default function FullWidthTabs() {
   const theme = useTheme();
   const [value, setValue] = useState(0);
-  const [projects, setProjects] = useState([]);
-  const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
   const isMobile = window.innerWidth < 768;
-  const initialItems = isMobile ? 4 : 6;
+  const initialItems = isMobile ? 2 : 3;
 
   useEffect(() => {
     AOS.init({
@@ -134,67 +144,33 @@ export default function FullWidthTabs() {
     });
   }, []);
 
-
-  const fetchData = useCallback(async () => {
-    try {
-      // Mengambil data dari Supabase secara paralel
-      const [projectsResponse, certificatesResponse] = await Promise.all([
-        supabase.from("projects").select("*").order('id', { ascending: true }),
-        supabase.from("certificates").select("*").order('id', { ascending: true }), 
-      ]);
-
-      // Error handling untuk setiap request
-      if (projectsResponse.error) throw projectsResponse.error;
-      if (certificatesResponse.error) throw certificatesResponse.error;
-
-      // Supabase mengembalikan data dalam properti 'data'
-      const projectData = projectsResponse.data || [];
-      const certificateData = certificatesResponse.data || [];
-
-      setProjects(projectData);
-      setCertificates(certificateData);
-
-      // Store in localStorage (fungsionalitas ini tetap dipertahankan)
-      localStorage.setItem("projects", JSON.stringify(projectData));
-      localStorage.setItem("certificates", JSON.stringify(certificateData));
-    } catch (error) {
-      console.error("Error fetching data from Supabase:", error.message);
-    }
-  }, []);
-
-
-
-  useEffect(() => {
-    // Coba ambil dari localStorage dulu untuk laod lebih cepat
-    const cachedProjects = localStorage.getItem('projects');
-    const cachedCertificates = localStorage.getItem('certificates');
-
-    if (cachedProjects && cachedCertificates) {
-        setProjects(JSON.parse(cachedProjects));
-        setCertificates(JSON.parse(cachedCertificates));
-    }
-    
-    fetchData(); // Tetap panggil fetchData untuk sinkronisasi data terbaru
-  }, [fetchData]);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const toggleShowMore = useCallback((type) => {
+  const toggleShowMore = (type) => {
     if (type === 'projects') {
       setShowAllProjects(prev => !prev);
     } else {
       setShowAllCertificates(prev => !prev);
     }
-  }, []);
+  };
 
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems);
+  // Adaptar seus projetos para o formato que o CardProject espera
+  const adaptedProjects = projects.map(project => ({
+    id: project.id.toString(),
+    Img: project.image,
+    Title: project.title,
+    Description: project.description,
+    Link: project.link,
+    TechStacks: []
+  }));
+
+  const displayedProjects = showAllProjects ? adaptedProjects : adaptedProjects.slice(0, initialItems);
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
-  // Sisa dari komponen (return statement) tidak ada perubahan
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
+    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="portofolio">
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
@@ -205,12 +181,11 @@ export default function FullWidthTabs() {
             backgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
           }}>
-            Portfolio Showcase
+            Portfólio
           </span>
         </h2>
         <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Explore my journey through projects, certifications, and technical expertise. 
-          Each section represents a milestone in my continuous learning path.
+          Acompanhe minha evolução profissional por meio de projetos, certificações e competências técnicas.
         </p>
       </div>
 
@@ -308,12 +283,13 @@ export default function FullWidthTabs() {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 {displayedProjects.map((project, index) => (
                   <div
-                    key={project.id || index}
+                    key={project.id}
                     data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
                     data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                    className="w-full"
                   >
                     <CardProject
                       Img={project.Img}
@@ -321,13 +297,14 @@ export default function FullWidthTabs() {
                       Description={project.Description}
                       Link={project.Link}
                       id={project.id}
+                      TechStacks={project.TechStacks}
                     />
                   </div>
                 ))}
               </div>
             </div>
-            {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+            {adaptedProjects.length > initialItems && (
+              <div className="mt-6 w-full flex justify-center">
                 <ToggleButton
                   onClick={() => toggleShowMore('projects')}
                   isShowingMore={showAllProjects}
@@ -338,20 +315,28 @@ export default function FullWidthTabs() {
 
           <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-6 gap-4 w-full">
                 {displayedCertificates.map((certificate, index) => (
                   <div
-                    key={certificate.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                    key={certificate.id}
+                    data-aos={index % 2 === 0 ? "fade-up-right" : "fade-up-left"}
+                    data-aos-duration={index % 2 === 0 ? "1000" : "1200"}
+                     className="w-full max-w-md mx-auto"
+                    style={{ maxWidth: "450px" }}
                   >
-                    <Certificate ImgSertif={certificate.Img} />
+                    <Certificate 
+                      title={certificate.title}
+                      organization={certificate.organization}
+                      course={certificate.course}
+                      issueDate={certificate.issueDate}
+                      credentialUrl={certificate.credentialUrl}
+                    />
                   </div>
                 ))}
               </div>
             </div>
             {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+              <div className="mt-6 w-full flex justify-center">
                 <ToggleButton
                   onClick={() => toggleShowMore('certificates')}
                   isShowingMore={showAllCertificates}

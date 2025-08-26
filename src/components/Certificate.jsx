@@ -1,197 +1,185 @@
-import React, { useState } from "react"
-import { Modal, IconButton, Box, Fade, Backdrop, Zoom, Typography } from "@mui/material"
-import CloseIcon from "@mui/icons-material/Close"
-import FullscreenIcon from "@mui/icons-material/Fullscreen"
+import { GraduationCap, ExternalLink } from "lucide-react";
+import PropTypes from 'prop-types';
 
-const Certificate = ({ ImgSertif }) => {
-	const [open, setOpen] = useState(false)
+const Certificate = ({ 
+  title = "Certificado", 
+  organization = "",
+  course = "",
+  issueDate = "",
+  credentialUrl = ""
+}) => {
 
-	const handleOpen = () => {
-		setOpen(true)
-	}
+  return (
+    <div style={{ width: "100%", height: "100%" }}>
+      
+      {/* Container Principal */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(30, 30, 50, 0.9) 100%)",
+          borderRadius: "12px",
+          padding: "24px",
+          height: "100%",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "translateY(-5px)";
+          e.currentTarget.style.boxShadow = "0 12px 40px rgba(139, 92, 246, 0.2)";
+          e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.3)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "translateY(0px)";
+          e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.3)";
+          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+        }}
+      >
+        {/* Cabeçalho com Ícone */}
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "16px" }}>
+          <div
+            style={{
+              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+              borderRadius: "50%",
+              padding: "8px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginRight: "16px",
+            }}
+          >
+            <GraduationCap size={24} color="white" />
+          </div>
+          <div 
+            style={{ 
+              fontWeight: "bold", 
+              color: "white",
+              fontSize: "1.1rem"
+            }}
+          >
+            Formação Acadêmica
+          </div>
+        </div>
 
-	const handleClose = () => {
-		setOpen(false)
-	}
 
-	return (
-		<Box component="div" sx={{ width: "100%" }}>
-			{/* Thumbnail Container */}
-			<Box
-				className=""
-				sx={{
-					position: "relative",
-					overflow: "hidden",
-					borderRadius: 2,
-					boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
-					transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-					"&:hover": {
-						transform: "translateY(-5px)",
-						boxShadow: "0 12px 24px rgba(0,0,0,0.2)",
-						"& .overlay": {
-							opacity: 1,
-						},
-						"& .hover-content": {
-							transform: "translate(-50%, -50%)",
-							opacity: 1,
-						},
-						"& .certificate-image": {
-							filter: "contrast(1.05) brightness(1) saturate(1.1)",
-						},
-					},
-				}}>
-				{/* Certificate Image with Initial Filter */}
-				<Box
-					sx={{
-						position: "relative",
-						"&::before": {
-							content: '""',
-							position: "absolute",
-							top: 0,
-							left: 0,
-							right: 0,
-							bottom: 0,
-							backgroundColor: "rgba(0, 0, 0, 0.1)",
-							zIndex: 1,
-						},
-					}}>
-					<img
-						className="certificate-image"
-						src={ImgSertif}
-						alt="Certificate"
-						style={{
-							width: "100%",
-							height: "auto",
-							display: "block",
-							objectFit: "cover",
-							filter: "contrast(1.10) brightness(0.9) saturate(1.1)",
-							transition: "filter 0.3s ease",
-						}}
-						onClick={handleOpen}
-					/>
-				</Box>
+        {/* Informações da Universidade */}
+        <div style={{ marginBottom: "16px" }}>
+          <div 
+            style={{ 
+              fontWeight: "bold", 
+              color: "#E0E7FF",
+              fontSize: "1rem",
+              marginBottom: "4px"
+            }}
+          >
+            {title}
+          </div>
+          <div 
+            style={{ 
+              color: "#A5B4FC",
+              fontSize: "0.9rem",
+              marginBottom: "8px"
+            }}
+          >
+            {organization}
+          </div>
+        </div>
 
-				{/* Hover Overlay */}
-				<Box
-					className="overlay"
-					sx={{
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						opacity: 0,
-						transition: "all 0.3s ease",
-						cursor: "pointer",
-						zIndex: 2,
-					}}
-					onClick={handleOpen}>
-					{/* Hover Content */}
-					<Box
-						className="hover-content"
-						sx={{
-							position: "absolute",
-							top: "50%",
-							left: "50%",
-							transform: "translate(-50%, -60%)",
-							opacity: 0,
-							transition: "all 0.4s ease",
-							textAlign: "center",
-							width: "100%",
-							color: "white",
-						}}>
-						<FullscreenIcon
-							sx={{
-								fontSize: 40,
-								mb: 1,
-								filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))",
-							}}
-						/>
-						<Typography
-							variant="h6"
-							sx={{
-								fontWeight: 600,
-								textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-							}}>
-							View Certificate
-						</Typography>
-					</Box>
-				</Box>
-			</Box>
+        {/* Curso */}
+        <div style={{ marginBottom: "16px" }}>
+          <div 
+            style={{ 
+              color: "#CBD5E1",
+              fontWeight: "500",
+              fontSize: "0.9rem",
+              marginBottom: "4px"
+            }}
+          >
+            Curso:
+          </div>
+          <div 
+            style={{ 
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "1rem"
+            }}
+          >
+            {course}
+          </div>
+        </div>
 
-			{/* Modal */}
-			<Modal
-				open={open}
-				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
-				BackdropComponent={Backdrop}
-				BackdropProps={{
-					timeout: 300,
-					sx: {
-						backgroundColor: "rgba(0, 0, 0, 0.9)",
-						backdropFilter: "blur(5px)",
-					},
-				}}
-				sx={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-					margin: 0,
-					padding: 0,
-					"& .MuiBackdrop-root": {
-						backgroundColor: "rgba(0, 0, 0, 0.9)",
-					},
-				}}>
-				<Box
-					sx={{
-						position: "relative",
-						width: "auto",
-						maxWidth: "90vw",
-						maxHeight: "90vh",
-						m: 0,
-						p: 0,
-						outline: "none",
-						"&:focus": {
-							outline: "none",
-						},
-					}}>
-					{/* Close Button */}
-					<IconButton
-						onClick={handleClose}
-						sx={{
-							position: "absolute",
-							right: 16,
-							top: 16,
-							color: "white",
-							bgcolor: "rgba(0,0,0,0.6)",
-							zIndex: 1,
-							padding: 1,
-							"&:hover": {
-								bgcolor: "rgba(0,0,0,0.8)",
-								transform: "scale(1.1)",
-							},
-						}}
-						size="large">
-						<CloseIcon sx={{ fontSize: 24 }} />
-					</IconButton>
+        {/* Status e Data */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center",
+          padding: "16px",
+          background: "rgba(139, 92, 246, 0.1)",
+          borderRadius: "8px",
+          border: "1px solid rgba(139, 92, 246, 0.2)"
+        }}>
+          <div 
+            style={{ 
+              color: "#CBD5E1",
+              fontSize: "0.85rem"
+            }}
+          >
+            Status:
+          </div>
+          <div
+            style={{
+              background: issueDate === "Em andamento" 
+                ? "rgba(234, 179, 8, 0.2)" 
+                : "rgba(34, 197, 94, 0.2)",
+              color: issueDate === "Em andamento" ? "#FBBF24" : "#4ADE80",
+              padding: "4px 12px",
+              borderRadius: "20px",
+              fontSize: "0.8rem",
+              fontWeight: "bold",
+              border: issueDate === "Em andamento" 
+                ? "1px solid rgba(234, 179, 8, 0.3)" 
+                : "1px solid rgba(34, 197, 94, 0.3)"
+            }}
+          >
+            {issueDate}
+          </div>
+        </div>
 
-					{/* Modal Image */}
-					<img
-						src={ImgSertif}
-						alt="Certificate Full View"
-						style={{
-							display: "block",
-							maxWidth: "100%",
-							maxHeight: "90vh",
-							margin: "0 auto",
-							objectFit: "contain",
-						}}
-					/>
-				</Box>
-			</Modal>
-		</Box>
-	)
-}
+        {/* Link para credencial (se existir) */}
+        {credentialUrl && (
+          <div style={{ marginTop: "16px", textAlign: "center" }}>
+            <a
+              href={credentialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "#818CF8",
+                textDecoration: "none",
+                fontSize: "0.9rem",
+                fontWeight: "500",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#A5B4FC"}
+              onMouseLeave={(e) => e.target.style.color = "#818CF8"}
+            >
+              <ExternalLink size={16} />
+              Ver Credencial
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-export default Certificate
+Certificate.propTypes = {
+  title: PropTypes.string,
+  organization: PropTypes.string,
+  course: PropTypes.string,
+  issueDate: PropTypes.string,
+  credentialUrl: PropTypes.string
+};
+
+export default Certificate;

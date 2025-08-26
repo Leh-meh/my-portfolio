@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -6,12 +6,12 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("Home");
     
-    const navItems = [
-        { href: "#Home", label: "Home" },
-        { href: "#About", label: "About" },
-        { href: "#Portofolio", label: "Portofolio" },
-        { href: "#Contact", label: "Contact" },
-    ];
+   const navItems = useMemo(() => [
+  { href: "#Home", label: "Home" },
+  { href: "#About", label: "About" },
+  { href: "#Portofolio", label: "Portofolio" },
+  { href: "#Contact", label: "Contact" },
+], []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,7 +42,7 @@ const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [navItems]);
 
     useEffect(() => {
         if (isOpen) {
@@ -84,7 +84,7 @@ const Navbar = () => {
                             onClick={(e) => scrollToSection(e, "#Home")}
                             className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
                         >
-                            Ekizr
+                            Medeiross.dev
                         </a>
                     </div>
         
