@@ -33,7 +33,6 @@ TypewriterEffect.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-
 const BackgroundEffect = () => (
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-3xl animate-pulse" />
@@ -114,7 +113,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
             <div className="w-full max-w-4xl mx-auto">
               {/* Icons */}
               <motion.div 
-                className="flex justify-center gap-3 sm:gap-4 md:gap-8 mb-6 sm:mb-8 md:mb-12"
+                className="flex justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12"
                 variants={childVariants}
               >
                 {[Code2, User, Github].map((Icon, index) => (
@@ -126,27 +125,40 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
 
               {/* Welcome Text */}
               <motion.div 
-                className="text-center mb-6 sm:mb-8 md:mb-12"
+                className="text-center mb-8 sm:mb-10 md:mb-12"
                 variants={childVariants}
               >
-                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
-                  <div className="mb-2 sm:mb-4">
-                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      Bem-vindo
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                     ao
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      Meu
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold space-y-2 sm:space-y-4 leading-tight">
+                  <div className="mb-4 sm:mb-6">
+                    <span 
+                      data-aos="fade-right" 
+                      data-aos-delay="200" 
+                      className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
+                    >
+                      Front-End 
+                    </span>
+                    <span 
+                      data-aos="fade-right" 
+                      data-aos-delay="400" 
+                      className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent"
+                    >
+                      Developer
                     </span>
                   </div>
                   <div>
-                    <span data-aos="fade-up" data-aos-delay="800" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      Portfolio
-                    </span>{' '}
-                    <span data-aos="fade-up" data-aos-delay="1000" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      Website
+                    <span 
+                      data-aos="fade-up" 
+                      data-aos-delay="800" 
+                      className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                    >
+                       Ideias 
+                    </span>
+                    <span 
+                      data-aos="fade-up" 
+                      data-aos-delay="1000" 
+                      className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                    >
+                      em foco.
                     </span>
                   </div>
                 </h1>
@@ -160,16 +172,16 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                 data-aos-delay="1200"
               >
                 <a
-                  href="my_portifolio.com"
+                  href="my_portfolio.com"
                   className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full relative group hover:scale-105 transition-transform duration-300"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer" 
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
                   <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
                     <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                      <TypewriterEffect text="my_portifolio.com" />
+                      <TypewriterEffect text="my_portfolio.com" />
                     </span>
                   </div>
                 </a>

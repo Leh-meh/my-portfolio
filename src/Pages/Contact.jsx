@@ -35,7 +35,7 @@ const ContactPage = () => {
     });
 
     try {
-      // ⚠️ Substitua pelo seu URL do Formspree
+      // URL do Formspree
       const formSubmitUrl = 'https://formspree.io/f/xyzprbkg';
 
       const submitData = new FormData();
@@ -95,7 +95,7 @@ const ContactPage = () => {
       </div>
 
       {/* AQUI FOI ALTERADO O ID PARA "contato" */}
-      <div className="h-auto py-10 flex items-center justify-center 2xl:pr-[3.1%] lg:pr-[3.8%] md:px-0" id="contato">
+      <div className="h-auto py-10 flex items-center justify-center 2xl:pr-[3.1%] lg:pr-[3.8%] md:px-0" id="Contact">
         <div className="container px-[1%] grid grid-cols-1 gap-12">
           <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 transform transition-all duration-500 hover:shadow-[#6366f1]/10">
             <div className="flex justify-between items-start mb-8">

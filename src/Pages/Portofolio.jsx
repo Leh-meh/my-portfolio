@@ -59,7 +59,7 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
     "
   >
     <span className="relative z-10 flex items-center gap-2">
-      {isShowingMore ? "See Less" : "See More"}
+      {isShowingMore ? "Ver menos" : "Ver mais"}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -136,7 +136,7 @@ export default function FullWidthTabs() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
   const isMobile = window.innerWidth < 768;
-  const initialItems = isMobile ? 2 : 3;
+  const initialItems = isMobile ? 2 : 4;
 
   useEffect(() => {
     AOS.init({
@@ -170,7 +170,7 @@ export default function FullWidthTabs() {
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="portofolio">
+    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
@@ -281,6 +281,7 @@ export default function FullWidthTabs() {
           index={value}
           onChangeIndex={setValue}
         >
+           {/* === PROJECTS === */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
@@ -313,9 +314,10 @@ export default function FullWidthTabs() {
             )}
           </TabPanel>
 
+             {/* === CERTIFICATES === */}
           <TabPanel value={value} index={1} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-6 gap-4 w-full">
+           <div className="w-full px-2 md:px-12 flex justify-center items-center overflow-hidden">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 md:gap-6 gap-4 w-full">
                 {displayedCertificates.map((certificate, index) => (
                   <div
                     key={certificate.id}
@@ -345,6 +347,8 @@ export default function FullWidthTabs() {
             )}
           </TabPanel>
 
+            
+          {/* === TECH STACK === */}
           <TabPanel value={value} index={2} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">

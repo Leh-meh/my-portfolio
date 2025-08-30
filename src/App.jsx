@@ -17,20 +17,12 @@ import Navbar from "./components/Navbar";
 import AnimatedBackground from "./components/Background";
 import ProjectDetails from "./components/ProjectDetail";
 
-// Footer atualizado com scroll suave
 const Footer = () => {
-  const handleScroll = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <footer className="bg-[#030014] border-t border-white/10">
+    <footer className="bg-[#0f0f1f] border-t border-white/10">
       <div className="mx-auto w-full max-w-6xl px-4 py-8">
         {/* Divisor */}
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent mb-8"></div>
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent mb-8"></div>
 
         {/* Conteúdo principal */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
@@ -42,76 +34,81 @@ const Footer = () => {
                 Medeiross.dev
               </span>
             </div>
-            <span className="text-sm text-gray-400 text-center md:text-left">
+            <span className="text-sm text-gray-300 text-center md:text-left">
               Desenvolvendo soluções digitais com excelência
             </span>
           </div>
 
-          {/* Links úteis */}
-          <div className="flex flex-wrap justify-center gap-6">
-            <button
-              onClick={() => handleScroll("home")}
-              className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
-            >
-              Início
-            </button>
-            <button
-              onClick={() => handleScroll("about")}
-              className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
-            >
-              Sobre
-            </button>
-            <button
-              onClick={() => handleScroll("portfolio")}
-              className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
-            >
-              Projetos
-            </button>
-            <button
-              onClick={() => handleScroll("contact")}
-              className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm"
-            >
-              Contato
-            </button>
-          </div>
-
-          {/* Redes sociais */}
-          <div className="flex gap-4">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white/5 hover:bg-purple-500/10 rounded-lg transition-all duration-300 hover:scale-110"
-            >
-              {/* Ícone GitHub */}
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 bg-white/5 hover:bg-purple-500/10 rounded-lg transition-all duration-300 hover:scale-110"
-            >
-              {/* Ícone LinkedIn */}
-            </a>
-            <a
-              href="mailto:contato@medeiross.dev"
-              className="p-2 bg-white/5 hover:bg-purple-500/10 rounded-lg transition-all duration-300 hover:scale-110"
-            >
-              {/* Ícone Email */}
-            </a>
-          </div>
+                {/* Redes sociais */}
+        <div className="flex gap-4">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"
+          >
+            <img 
+              width="24" 
+              height="24" 
+              src="https://img.icons8.com/ios-glyphs/30/github.png" 
+              alt="GitHub"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"
+          >
+            <img 
+              width="24" 
+              height="24" 
+              src="https://img.icons8.com/ios-glyphs/30/linkedin.png" 
+              alt="LinkedIn"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/medeiross.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"
+          >
+            <img 
+              width="24" 
+              height="24" 
+              src="https://img.icons8.com/ios-glyphs/30/instagram-new.png" 
+              alt="Instagram"
+            />
+          </a>
+          <a
+            href="https://img.icons8.com/?size=100&id=2mIgusGquJFz&format=png&color=5865F2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"
+          >
+            <img 
+              width="24" 
+              height="24" 
+              src="https://img.icons8.com/ios-glyphs/30/discord-logo.png" 
+              alt="Discord"
+            />
+          </a>
         </div>
+
+
+        </div> {/* Fim do conteúdo principal */}
 
         {/* Rodapé inferior */}
         <div className="text-center pt-4 border-t border-white/5">
-          <span className="text-xs text-gray-500">
-            © 2025 Medeiross.dev • Desenvolvido com React e Tailwind CSS
+          <span className="text-xs text-gray-400">
+       © 2025 Medeiross.dev • Transformando ideias em experiências digitais
           </span>
         </div>
       </div>
     </footer>
   );
 };
+
 
 // Landing Page Layout
 const LandingPage = ({ showWelcome, setShowWelcome }) => {
@@ -127,16 +124,16 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
         <>
           <Navbar />
           <AnimatedBackground />
-          <section id="home">
+          <section id="Home">
             <Home />
           </section>
-          <section id="about">
+          <section id="About">
             <About />
           </section>
-          <section id="portfolio">
+          <section id="Portfolio">
             <Portofolio />
           </section>
-          <section id="contact">
+          <section id="Contact">
             <ContactPage />
           </section>
           <Footer />

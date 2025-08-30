@@ -11,7 +11,7 @@ export const projects = [
     id: 2,
     title: "Mikael Arq. Interiores",
     description: "Mikael Arq. Interiores: Desenvolvimento de site institucional responsivo com design clean, destacando projetos de arquitetura e interiores.",
-    image: "public/mikael-arq.jpg", // Caminho corrigido
+    image: "public/arq.jpg", // Caminho corrigido
     link: "https://leh-meh.github.io/mikael-arq-interiores/"
   }
 ]; // Corrigido: ] em vez de };x
