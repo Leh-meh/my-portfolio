@@ -122,13 +122,14 @@ function a11yProps(index) {
 
 // techStacks tetap sama
 const techStacks = [
-  { icon: "/public/html-icon.png", language: "HTML" },
-  { icon: "/public/css-icon.png", language: "CSS" },
-  { icon: "/public/js-icon.png", language: "JavaScript" },
-  { icon: "/public/react-icon.png", language: "ReactJS" },
-  { icon: "/public/node-js-icon.png", language: "Node JS" },
-  { icon: "/public/figma-icon.png", language: "Figma" },
-]
+  { icon: "/html-icon.png", language: "HTML" },
+  { icon: "/css-icon.png", language: "CSS" },
+  { icon: "/js-icon.png", language: "JavaScript" },
+  { icon: "/react-icon.png", language: "ReactJS" },
+  { icon: "/node-js-icon.png", language: "Node JS" },
+  { icon: "/figma-icon.png", language: "Figma" },
+];
+
 
 export default function FullWidthTabs() {
   const theme = useTheme();
