@@ -1,3 +1,6 @@
+
+import belleEssenceImg from "../assets/Belle-Essence.png";
+
 // src/data/projectsData.js
 export const projects = [
   {
@@ -9,10 +12,10 @@ export const projects = [
   },
  {
   id: 2,
-  title: "Mikael Arq. Interiores",
-  description: "Mikael Arq. Interiores: Desenvolvimento de site institucional responsivo com design clean, destacando projetos de arquitetura e interiores.",
-  image: "/arq.jpg", // ✅ sem 'public/'
-  link: "https://leh-meh.github.io/mikael-arq-interiores/"
+  title: "Belle Essence",
+  description: "Website desenvolvido para a Belle Essence, com design elegante, moderno e totalmente responsivo.",
+  image: belleEssenceImg,
+  link: "https://belle-essence.vercel.app/"
 }
 
 ]; // Corrigido: ] em vez de };x

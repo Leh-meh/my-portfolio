@@ -42,7 +42,7 @@ const Footer = () => {
                 {/* Redes sociais */}
         <div className="flex gap-4">
           <a
-            href="https://github.com"
+            href="https://github.com/Leh-meh"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"
@@ -81,7 +81,7 @@ const Footer = () => {
             />
           </a>
           <a
-            href="https://img.icons8.com/?size=100&id=2mIgusGquJFz&format=png&color=5865F2"
+            href="https://discord.com/users/SEU_ID_DO_DISCORD"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 bg-white/10 rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-purple-300/30"

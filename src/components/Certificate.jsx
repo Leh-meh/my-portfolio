@@ -1,33 +1,26 @@
 import { GraduationCap, Laptop, BookOpen, Award } from "lucide-react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Certificate = ({ 
-  title, 
-  organization, 
-  course, 
-  issueDate, 
-  type 
-}) => {
-
+const Certificate = ({ title, organization, course, issueDate, type }) => {
   // Ícones por tipo
   const getIcon = (type) => {
-    switch(type) {
+    switch (type) {
       case "academic":
-        return <GraduationCap size={24} color="white" />;
+        return <GraduationCap size={22} color="white" />;
       case "certificacao":
-        return <Laptop size={24} color="white" />;
+        return <Laptop size={22} color="white" />;
       case "idioma":
-        return <BookOpen size={24} color="white" />;
+        return <BookOpen size={22} color="white" />;
       case "premio":
-        return <Award size={24} color="white" />;
+        return <Award size={22} color="white" />;
       default:
-        return <GraduationCap size={24} color="white" />;
+        return <GraduationCap size={22} color="white" />;
     }
   };
 
-  // Cores do círculo por tipo
+  // Cores do círculo
   const getCircleColor = (type) => {
-    switch(type) {
+    switch (type) {
       case "academic":
         return "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)";
       case "certificacao":
@@ -41,97 +34,84 @@ const Certificate = ({
     }
   };
 
-  // Texto do cabeçalho por tipo
+  // Texto do cabeçalho
   const getHeaderText = (type) => {
-    switch(type) {
-      case "academic": return "Formação Acadêmica";
-      case "certificacao": return "Curso / Certificado";
-      case "idioma": return "Idioma / Certificação";
-      case "premio": return "Prêmio / Conquista";
-      default: return "Certificado";
+    switch (type) {
+      case "academic":
+        return "Formação Acadêmica";
+      case "certificacao":
+        return "Curso / Certificado";
+      case "idioma":
+        return "Idioma / Certificação";
+      case "premio":
+        return "Prêmio / Conquista";
+      default:
+        return "Certificado";
     }
   };
 
   return (
-    <div style={{ width: "24rem", height: "19rem" }}>
+    <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl px-2">
       <div
         style={{
-          background: "linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(30, 30, 50, 0.9) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(30, 30, 50, 0.9) 100%)",
           borderRadius: "12px",
-          padding: "24px",
-          marginTop: "8px",
-          height: "100%",
+          padding: "20px",
+          marginTop: "12px",
           border: "1px solid rgba(255, 255, 255, 0.1)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+          boxShadow: "0 6px 24px rgba(0, 0, 0, 0.25)",
           transition: "all 0.3s ease",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "translateY(-5px)";
-          e.currentTarget.style.boxShadow = "0 12px 40px rgba(139, 92, 246, 0.2)";
-          e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.3)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "translateY(0px)";
-          e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.3)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-        }}
+        className="h-full hover:-translate-y-1 hover:shadow-xl"
       >
         {/* Cabeçalho */}
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "16px" }}>
+        <div className="flex items-center mb-4">
           <div
             style={{
               background: getCircleColor(type),
-              borderRadius: "50%",
-              padding: "8px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginRight: "16px",
             }}
+            className="rounded-full p-2 mr-4 flex items-center justify-center w-10 h-10"
           >
             {getIcon(type)}
           </div>
-          <div style={{ fontWeight: "bold", color: "white", fontSize: "1.1rem" }}>
+          <h3 className="font-bold text-white text-lg sm:text-xl">
             {getHeaderText(type)}
-          </div>
+          </h3>
         </div>
 
         {/* Informações */}
-        <div style={{ marginBottom: "16px" }}>
-          <div style={{ fontWeight: "bold", color: "#E0E7FF", fontSize: "1rem", marginBottom: "4px" }}>
+        <div className="mb-4">
+          <div className="font-bold text-indigo-100 text-base sm:text-lg mb-1">
             {title}
           </div>
-          <div style={{ color: "#A5B4FC", fontSize: "0.9rem", marginBottom: "8px" }}>
+          <div className="text-indigo-300 text-sm sm:text-base">
             {organization}
           </div>
         </div>
 
         {/* Curso */}
-        <div style={{ marginBottom: "16px" }}>
-          <div style={{ color: "#CBD5E1", fontWeight: "500", fontSize: "0.9rem", marginBottom: "4px" }}>
+        <div className="mb-4">
+          <div className="text-slate-300 font-medium text-sm sm:text-base mb-1">
             Curso:
           </div>
-          <div style={{ color: "white", fontWeight: "bold", fontSize: "1rem" }}>
+          <div className="text-white font-bold text-base sm:text-lg">
             {course}
           </div>
         </div>
 
         {/* Status */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px", background: "rgba(139, 92, 246, 0.1)", borderRadius: "8px", border: "1px solid rgba(139, 92, 246, 0.2)" }}>
-          <div style={{ color: "#CBD5E1", fontSize: "0.85rem" }}>Status:</div>
-          <div
-            style={{
-              background: issueDate === "Em andamento" ? "rgba(234, 179, 8, 0.2)" : "rgba(34, 197, 94, 0.2)",
-              color: issueDate === "Em andamento" ? "#FBBF24" : "#4ADE80",
-              padding: "4px 12px",
-              borderRadius: "20px",
-              fontSize: "0.8rem",
-              fontWeight: "bold",
-              border: issueDate === "Em andamento" ? "1px solid rgba(234, 179, 8, 0.3)" : "1px solid rgba(34, 197, 94, 0.3)"
-            }}
+        <div className="flex justify-between items-center p-3 bg-violet-500/10 rounded-lg border border-violet-500/20">
+          <span className="text-slate-300 text-xs sm:text-sm">Status:</span>
+          <span
+            className={`px-3 py-1 rounded-full text-xs sm:text-sm font-bold border ${
+              issueDate === "Em andamento"
+                ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                : "bg-green-500/20 text-green-400 border-green-500/30"
+            }`}
           >
             {issueDate}
-          </div>
+          </span>
         </div>
       </div>
     </div>
@@ -144,7 +124,8 @@ Certificate.propTypes = {
   course: PropTypes.string.isRequired,
   issueDate: PropTypes.string.isRequired,
   credentialUrl: PropTypes.string,
-  type: PropTypes.oneOf(["academic","certificacao","idioma","premio"]).isRequired
+  type: PropTypes.oneOf(["academic", "certificacao", "idioma", "premio"])
+    .isRequired,
 };
 
 export default Certificate;
